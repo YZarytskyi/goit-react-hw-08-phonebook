@@ -16,6 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "declarations.d.ts", "Types", "src/components/ContactsList/.tsx"],
+  "include": ["src", "declarations.d.ts", "Types", "src/components/ContactsPage/ContactsList/.tsx"],
   "exclude": ["node_modules", "build"]
 }

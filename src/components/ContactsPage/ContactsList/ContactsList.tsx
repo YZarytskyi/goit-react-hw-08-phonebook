@@ -1,6 +1,6 @@
 import ContactsListItem from './ContactsListItem';
 import styled from 'styled-components';
-import { useAppSelector } from '../../redux/hooks/hooks';
+import { useAppSelector } from '../../../redux/hooks/hooks';
 
 const Ul = styled.ul`
   padding-left: 3rem;

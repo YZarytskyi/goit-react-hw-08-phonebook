@@ -1,27 +1,24 @@
-import ContactsList from './ContactsList/ContactsList';
-import ContactsForm from './ContactsForm/ContactsForm';
-import Filter from './Filter/Filter';
-import { ContactsTitle, PageTitle } from './App.styled';
-import { useEffect } from 'react';
-import { useAppDispatch } from '../redux/hooks/hooks';
-import { fetchContacts } from '../redux/contactsSlice/contactsSlice';
+import { lazy, Suspense, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Navigation from './Navigation/Navigation';
+
+const ContactsPage = lazy(() => import('./ContactsPage/ContactsPage'));
+const SignUp = lazy(() => import('./SignUp/SignUp'));
+const Login = lazy(() => import('./Login/Login'));
 
 
 const App = () => {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchContacts())
-  }, [])
-
   return (
-    <div>
-      <PageTitle>Phonebook</PageTitle>
-      <ContactsForm />
-      <ContactsTitle>Contacts</ContactsTitle>
-      <Filter />
-      <ContactsList />
-    </div>
+    <>
+      <Navigation />
+      <Suspense>
+        <Routes>
+          <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="/register" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Suspense>
+    </>
   );
 };
 

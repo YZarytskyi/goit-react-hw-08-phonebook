@@ -1,5 +1,5 @@
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
-import { setFilter } from "../../redux/contactsSlice/contactsSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks/hooks";
+import { setFilter } from "../../../redux/contactsSlice/contactsSlice";
 import { Input, Label } from "./Filter.styled";
 
 

@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { Contact } from '../../types/types';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks/hooks';
-import { addContact } from '../../redux/contactsSlice/contactsSlice';
-import { Button, Form, Input, Label } from './ContactsForm.styled';
-
+import { Contact } from '../../../types/types';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks/hooks';
+import { Form, Input, Label } from './ContactsForm.styled';
+import { addContact } from '../../../redux/contactsSlice/contactsThunks';
+import { Button } from '@chakra-ui/react';
 
 const ContactsForm = () => {
-  const contacts = useAppSelector(state => state.contacts.contacts)
+  const contacts = useAppSelector(state => state.contacts.contacts);
   const dispatch = useAppDispatch();
 
   const [contactName, setContactName] = useState<string>('');
   const [contactNumber, setContactNumber] = useState<string>('');
 
-  const onChangeInput: React.FormEventHandler<HTMLInputElement> = (e) => {
+  const onChangeInput: React.FormEventHandler<HTMLInputElement> = e => {
     const { name, value } = e.target as HTMLInputElement;
     if (name === 'name') {
       setContactName(value);
@@ -22,7 +22,7 @@ const ContactsForm = () => {
     setContactNumber(value);
   };
 
-  const onSubmitAddContact: React.FormEventHandler<HTMLFormElement> = (e) => {
+  const onSubmitAddContact: React.FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
 
     const existingNames = contacts.items.map(el => el.name);
@@ -68,7 +68,9 @@ const ContactsForm = () => {
           onChange={onChangeInput}
         />
       </Label>
-      <Button type="submit">Add contact</Button>
+      <Button colorScheme="teal" size="md" type="submit">
+        Add contact
+      </Button>
     </Form>
   );
 };

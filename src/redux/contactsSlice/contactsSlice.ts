@@ -1,10 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Contact } from '../../types/types';
-import {
-  getAllContacts,
-  addNewContact,
-  deleteSelectedContact,
-} from '../../api/contactsApi';
+import { addContact, deleteContact, fetchContacts } from './contactsThunks';
 
 interface ContactsState {
   contacts: {
@@ -23,42 +19,6 @@ const initialState: ContactsState = {
   },
   filter: '',
 };
-
-export const fetchContacts = createAsyncThunk<Contact[]>(
-  'contacts/fetchAll',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await getAllContacts();
-      return response;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
-  }
-);
-
-export const addContact = createAsyncThunk<Contact, Contact>(
-  'contacts/addContact',
-  async (contact, { rejectWithValue }) => {
-    try {
-      const response = await addNewContact(contact);
-      return response;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
-  }
-);
-
-export const deleteContact = createAsyncThunk<Contact, string>(
-  'contacts/deleteContact',
-  async (id, { rejectWithValue }) => {
-    try {
-      const response = await deleteSelectedContact(id);
-      return response;
-    } catch (err) {
-      return rejectWithValue(err);
-    }
-  }
-);
 
 export const contactsSlice = createSlice({
   name: 'contacts',
