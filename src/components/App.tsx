@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Navigation from './Navigation/Navigation';
 
 const ContactsPage = lazy(() => import('./ContactsPage/ContactsPage'));
@@ -13,6 +13,7 @@ const App = () => {
       <Navigation />
       <Suspense>
         <Routes>
+          <Route path="/" element={<Navigate to="/contacts" />} />
           <Route path="/contacts" element={<ContactsPage />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
